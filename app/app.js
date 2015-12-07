@@ -1,12 +1,19 @@
-'use strict';
+//(function() {
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+  angular
+      .module('proximitify', ['ngRoute'])
+      .config(function($routeProvider) {
+        $routeProvider
+          .when('/', {
+            templateUrl: '/app/templates/login.html',
+            controller: 'LoginController',
+            controllerAs: 'vm'
+          })
+          .otherwise({
+            redirectTo: '/'
+          });
+      });
+
+//});
+
+
