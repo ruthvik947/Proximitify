@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        function init() {
+            var redirectUri = "http://localhost:8000/app/authcallback.html";
+            var clientId = "a68639b777b64ecbb8ef05826af1a66b";
+            var clientSecret = 'eb4eeddb195a4ca0abfdbec2f20b1a02';
+
+            var authcode = location.search.replace('?code=', '');
+
+            // Borrowed from: http://stackoverflow.com/questions/17793183/how-to-replace-window-open-with-a-post
+            open = function(verb, url, data, target) {
+                var form = document.createElement("form");
+                form.action = url;
+                form.method = verb;
+                form.target = target || "_self";
+                if (data) {
+                    for (var key in data) {
+                        var input = document.createElement("textarea");
+                        input.name = key;
+                        input.value = typeof data[key] === "object" ? JSON.stringify(data[key]) : data[key];
+                        form.appendChild(input);
+                    }
+                }
+                form.style.display = 'none';
+                document.body.appendChild(form);
+                console.log(form.submit());
+            };
+
+            function getAuthUrl() {
+                return 'https://accounts.spotify.com/api/token?client_id=' + clientId
+                        + '&redirect_uri=' + encodeURIComponent(redirectUri)
+                        + '&grant_type=' + 'authorization_code'
+                        + '&code=' + authcode
+                        + '&client_secret=' + clientSecret;
+            }
+
+            var baseUrl = 'https://accounts.spotify.com/api/token';
+
+            open('POST', baseUrl, {
+                grant_type: 'authorization_code',
+                code: authcode,
+                redirect_uri: redirectUri,
+                client_id: clientId,
+                client_secret: 'eb4eeddb195a4ca0abfdbec2f20b1a02'
+            }, '_blank');
+
+        }
+    </script>
+</head>
+<body onload="init()">
+
+</body>
+</html>
