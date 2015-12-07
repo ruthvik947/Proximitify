@@ -1,15 +1,10 @@
-//(function() {
+angular
+.module('proximitify')
+.controller('LoginController', ['Authentication', function(Authentication) {
+    var vm = this;
 
-    angular
-    .module('proximitify')
-    .controller('LoginController', [function() {
-        var vm = this;
+    vm.login = function() {
+        Authentication.login();
+    };
 
-        vm.login = function() {
-
-
-
-        };
-    }]);
-
-//});
+}]);
