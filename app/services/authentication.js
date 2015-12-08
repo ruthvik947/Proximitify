@@ -18,10 +18,10 @@ angular
         return {
             login: function () {
 
-                var w = 450,
-                    h = 600,
-                    left = (screen.width / 2) - (w / 2),
-                    top = (screen.height / 2) - (h / 2);
+                //var w = 450,
+                //    h = 600,
+                //    left = (screen.width / 2) - (w / 2),
+                //    top = (screen.height / 2) - (h / 2);
 
                 function openWindow() {
                     //var win = window.open(
