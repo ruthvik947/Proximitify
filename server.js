@@ -48,8 +48,8 @@ app.get('/following', function(req, res) {
     })
 });
 
-app.use(function(req, res){
-    res.sendStatus(404);
-});
+//app.use(function(req, res){
+//    res.sendStatus(404);
+//});
 
 app.listen(8000);
