@@ -1,0 +1,11 @@
+<div ng-controller="ConcertsController as vm">
+    <div class="card" ng-repeat="artist in vm.artists">
+        <div class="card-image" style="max-height: 100%; max-width: 100%">
+            <!--suppress HtmlUnknownTarget -->
+            <img class="materialboxed" src="{{artist.images[0].url}}">
+        </div>
+        <div class="card-action" >
+            <a href="#">View {{artist.name}} concerts near you</a>
+        </div>
+    </div>
+</div>

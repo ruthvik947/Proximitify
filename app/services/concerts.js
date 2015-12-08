@@ -6,13 +6,19 @@ angular
     .factory('ConcertFinder', function($http) {
 
         return {
-            findConcerts : function(artistName) {
-                var url = baseUrl + encodeURIComponent(artistName) + '&callback=JSON_CALLBACK';
 
-                return $http.jsonp(url).then(function(response) {
-                    return response.events.event;
-                });
+            getConcertsByArtist: function (artistName) {
+
+                var url = baseUrl + encodeURIComponent(artistName);
+
+                //function processJSONP(response) {
+                //    console.log('Concerts', response);
+                //}
+                //
+                //$.getJSON(url, processJSONP);
+
             }
+
         }
 
     });
