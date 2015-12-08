@@ -1,5 +1,5 @@
 var request = require('request');
-var qs = require('qs');
+var querystring = require('qs');
 
 var clientId = 'a68639b777b64ecbb8ef05826af1a66b';
 var redirectUri = 'http://localhost:8000/spotify-code';
@@ -57,18 +57,9 @@ module.exports = {
                     console.log(body);
                 });
 
-                // we can also pass the token to the browser to make requests from there
-                //res.redirect('/#' +
-                //    querystring.stringify({
-                //        access_token: access_token,
-                //        refresh_token: refresh_token
-                //    }));
+                callback(access_token, refresh_token);
 
-            } else {
-                res.redirect('/#' +
-                    querystring.stringify({
-                        error: 'invalid_token'
-                    }));
+                // we can also pass the token to the browser to make requests from there
             }
 
         });

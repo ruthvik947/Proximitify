@@ -1,13 +1,18 @@
 angular
     .module('proximitify', ['ngRoute'])
     .config(function($routeProvider) {
-        $routeProvider.
-        when('/', {
+        $routeProvider
+            .when('/', {
             templateUrl: '/templates/login.html',
             controller: 'LoginController',
             controllerAs: 'vm'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
+            }).
+            when('/auth-complete', {
+                templateUrl: '/templates/done.html',
+                controller: 'AuthController',
+                controllerAs: 'vm'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
     });

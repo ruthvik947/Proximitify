@@ -1,6 +1,6 @@
 angular
     .module('proximitify')
-    .factory('Authentication', ['$http', function($http) {
+    .factory('Authentication', [function() {
 
         var clientId = "a68639b777b64ecbb8ef05826af1a66b";
         var redirectUri = "http://localhost:8000/spotify-code";
@@ -28,9 +28,6 @@ angular
                         w + ',height=' + h + ',top=' + top + ',left=' + left
                     );
 
-                    setTimeout(function() {
-                        win.close();
-                    }, 3000);
                 }
 
                 openWindow();
