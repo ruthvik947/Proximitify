@@ -13,7 +13,7 @@ app.all('/*', function(req, res, next) {
     next();
 });
 
-app.get('/', function(req, res) {
+app.get('https://arcane-lake-1484.herokuapp.com/', function(req, res) {
     res.redirect('index.html');
 });
 
