@@ -26,11 +26,11 @@ app.get('/spotify-auth', function(req, res) {
 
 app.get('/spotify-code', function(req, res) {
     var code = req.query.code;
-    console.log(code);
+
     spotify.getAuthCode(code, function(access_token, refresh_token) {
 
-        res.redirect('/#' +
-            querystring.stringify({
+        res.redirect('/#/auth-complete/?'
+        + querystring.stringify({
                 access_token: access_token,
                 refresh_token: refresh_token
             }));
@@ -38,4 +38,14 @@ app.get('/spotify-code', function(req, res) {
     });
 });
 
-app.listen(8080);
+app.get('/concerts', function(req, res) {
+    res.redirect('/#/concerts');
+});
+
+app.get('/following', function(req, res) {
+    spotify.getFollowing(res.data, function(response) {
+        res.send(response);
+    })
+});
+
+app.listen(8000);

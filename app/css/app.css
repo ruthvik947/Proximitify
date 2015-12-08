@@ -18,6 +18,10 @@ body {
     border-width: 1px;
 }
 
+#button {
+    background: #2e7d32;
+}
+
 .container {
     text-align: center;
     vertical-align: middle;

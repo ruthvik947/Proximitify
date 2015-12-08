@@ -5,6 +5,9 @@ var clientId = 'a68639b777b64ecbb8ef05826af1a66b';
 var redirectUri = 'http://localhost:8000/spotify-code';
 var clientSecret = 'eb4eeddb195a4ca0abfdbec2f20b1a02';
 
+var accessToken = null;
+var refreshToken = null;
+
 module.exports = {
     login: function(callback) {
 
@@ -17,7 +20,7 @@ module.exports = {
 
         request({
             method: 'GET',
-            url: getLoginURL('')
+            url: getLoginURL('user-follow-read')
         }, function(error, response, body) {
             console.log(response.statusCode);
             callback(response);
@@ -46,6 +49,9 @@ module.exports = {
                 var access_token = body.access_token,
                     refresh_token = body.refresh_token;
 
+                accessToken = access_token;
+                refreshToken = refresh_token;
+
                 var options = {
                     url: 'https://api.spotify.com/v1/me',
                     headers: {'Authorization': 'Bearer ' + access_token},
@@ -54,15 +60,27 @@ module.exports = {
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
-                    console.log(body);
+                    //console.log(body);
                 });
 
                 callback(access_token, refresh_token);
-
-                // we can also pass the token to the browser to make requests from there
             }
 
         });
+
+    },
+
+    getFollowing: function(token, callback) {
+
+        request({
+            method: 'GET',
+            url: 'https://api.spotify.com/v1/me/following?type=artist',
+            headers: {
+                Authorization: 'Bearer ' + accessToken
+            }
+        }, function(error, response, body) {
+            callback(body);
+        })
 
     }
 };
