@@ -13,7 +13,7 @@ app.all('/*', function(req, res, next) {
     next();
 });
 
-app.get('https://arcane-lake-1484.herokuapp.com/', function(req, res) {
+app.get('/', function(req, res) {
     res.redirect('index.html');
 });
 
@@ -46,6 +46,10 @@ app.get('/following', function(req, res) {
     spotify.getFollowing(res.data, function(response) {
         res.send(response);
     })
+});
+
+app.use(function(req, res){
+    res.sendStatus(404);
 });
 
 app.listen(8000);
